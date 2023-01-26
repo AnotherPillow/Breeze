@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+body {
+    background-color: #111111;
+    color: #a8a8a8;
+}
+.slab {
+    text-align: center;
+    font-family: 'Roboto Slab', serif;
+}
+.josefin {
+    font-family: 'Josefin Sans', sans-serif;
+    overflow: hidden;
+}
+            
+.sparkle {
+    background-image: url('/public/sparkle.gif');
+}
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+.rounded_corners {
+    border-radius: 50%;
+}
+a {
+    color: olivedrab;
+    text-decoration: none;
+}
+#account_name {
+    position: absolute;
+    right: 125px;
+    width: 250px;
+    top: 40%;
+    transform: translateY(-50%);
+}
+#account_icon {
+    border-radius: 40%;
+    border: 2px solid #a8a8a8;
+    background-color: #383838;
+}
+#account_info {
+    position: relative;
+    height: 100px;
+    width: max-content;
+    text-align: right;
+    float: right;
+    margin-top: 15px;
+}
+input {
+    width: 200px;
+    height: 30px;
+    border-radius: 5px;
+    border: 2px solid #a8a8a8;
+    background-color: #383838;
+    color: #a8a8a8;
+    font-size: 20px;
+}
+#message_input {
+    position: absolute;
+    top:86vh;
+    left: 150px;
+    width: 80%;
+}
+#message_input:hover, .modal>input:hover {
+    border: 2px solid olivedrab;
+    transition: all 0.3s;
+    transform: scale(1.02);
+}
+#message_input:not(:hover) {
+    border: 2px solid #a8a8a8;
+    transform: scale(1);
+    transition: all 0.3s;
+}
+#message_input:focus, .modal>input:focus {
+    outline: none;
+}
+#top_left_info {
+    justify-content: space-between;
+}
+#groupID_input:focus {
+    outline: none;
+}
+#loading_anim {
+    /*have a trasparent circle with a dashed background that rotates*/
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: calc(50% - 50px);
+    left: calc(50% - 50px);
+    
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+
+    border: 10px dashed #383838;
+    border-top: 20px dashed #a8a8a8;
+    border-bottom: 20px dashed #a8a8a8;
+    border-left: 20px dashed #a8a8a8;
+    border-right: 20px dashed #a8a8a8;
+    animation: rotate 5s linear infinite;
+}
+
+#group_list {
+    padding-left: 10px;
+    padding-right: 14px;
+    max-width:100px;
+    /*make this elemeent scrollable instead of the page when it's too tall*/
+    overflow-y: scroll;
+    overflow-x: hidden;
+    /*make the scrollbar invisible*/
+    scrollbar-width: none;
+    height:100vh;
+}
+.group-img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid #a8a8a8;
+    background-color: #383838;
+}
+.group-img:hover,#account_icon:hover {
+    border: 2px solid olivedrab;
+    transform: scale(1.2);
+    transition: all 0.5s;
+}
+.group-img:not(:hover),#account_icon:not(:hover) {
+    transform: scale(1);
+    transition: all 0.3s;
+}
+.messages_container {
+    position: absolute;
+    top: 150px;
+    left: 150px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    max-height: 70vh;
+    scroll-behavior: smooth;
+}
+.message {
+    position: relative;
+    background-color: #383838;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    overflow: hidden;
+    width: 70vw;
+    max-width: 70vw;
+    word-wrap: break-word;
+}
+.message:hover {
+    background-color: #111111;
+    transition: all 0.3s;
+}
+.message_avatar_username {
+    max-height: 100px;
+}
+.message_sender {
+    position: absolute;
+    top: 20px;
+    left: 90px;
+    color: #a8a8a8;
+    padding: 5px;
+}
+.message_avatar {
+    border-radius: 50%;
+    border: 2px solid #a8a8a8;
+    background-color: #383838;
+}
+.modal {
+    border-radius: 10px;
+    background-color: #383838;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    width: 400px;
+    height: 300px;
+    border: 2px solid #a8a8a8;
+}
+.group_submit {
+    margin-top: 20px;
+    border: 2px solid #a8a8a8;
+    border-radius: 5px;
+    background-color: #383838;
+    color: #a8a8a8;
+    font-size: 20px;
+}

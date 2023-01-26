@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Breeze Messaging</title>
+        <link rel="stylesheet" href="/public/styles.css" />
+        <script>let PAGE_DATA = {
+            username: "<%= username%>",
+            password: "<%= password%>",
+        }</script>
+        <script src="/public/frontend.js"></script>
+    </head>
+    <body class="josefin">
+        <div id="top_left_info">
+
+            <div id="account_info">
+                <h2 id="account_name">Logged in as <%= username%></h2>
+                <img id="account_icon" src="https://api.dicebear.com/5.x/bottts/svg?seed=<%= username %>" alt="avatar" height="100" width="100">
+            </div>
+            <div id="group_list">
+                <br>
+                <img src="/public/addgroup.png" alt="add group" id="add_group" class="group-img add-group" width="100" height="100" onclick="document.body.appendChild(makeGroupModal())"/>    
+            </div>
+            <!--Figure out a good way to implement this: <div id="loading_anim"></div>-->
+            <div class="messages_container">
+                <div class="message">
+                    <div class="message_avatar_username">
+                        <img class="message_avatar" src="https://api.dicebear.com/5.x/bottts/svg?seed=joingroup" alt="avatar" height="75" width="75">
+                        <h3 class="message_sender">Please select a group to talk in!</h3>
+                    </div>
+                    <br>
+                    
+                    <p class="message_text">Your groups are in the sidebar at the left, if you aren't in any, press the plus to make one!</p>
+                </div>
+            </div>
+            <div id="message_box">
+                <input type="text" id="message_input" placeholder="Type a message...">
+            </div>
+            
+        </div>
+    </body>
+</html>
