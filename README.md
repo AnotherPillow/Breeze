@@ -20,3 +20,8 @@ You can run it using `npm run start` after the first run.
 - Refresh the page.
 - You can now send messages to the group.
 - If you reload the page, you will lose the message history, except for the latest message.
+
+## Images
+
+![Image of the app](https://i.imgur.com/P6Mu2op.png)
+![Sign up page](https://i.imgur.com/K0mqRCw.png)
