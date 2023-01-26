@@ -25,3 +25,7 @@ You can run it using `npm run start` after the first run.
 
 ![Image of the app](https://i.imgur.com/P6Mu2op.png)
 ![Sign up page](https://i.imgur.com/K0mqRCw.png)
+
+## Credits
+
+- [Dicebear](https://dicebear.com) for the avatars.
