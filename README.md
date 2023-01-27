@@ -6,6 +6,7 @@ A basic messaging app built with Express.
 
 - Clone the repo.
 - Put the host and port in the config.json file.
+- Install ![Node.js](https://nodejs.dev//en/) and run `npm install` in the project directory.
 - Set up databases and run using `npm run first_run`.
 - Access the app at the URL you specified in config.json.
 
