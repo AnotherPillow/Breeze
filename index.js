@@ -186,7 +186,7 @@ app.post('/api/create_group', function(req, res) {
 
         let groupsIdList = Object.keys(groupsFile);
         
-        let nextGroupID = groupsIdList !== [] ?  groupsIdList.reduce((a, b) => a.id > b.id ? a : b).id + 1 : 1;
+        let nextGroupID = groupsIdList.length > 0 ? groupsIdList.reduce((a, b) => a.id > b.id ? a : b).id + 1 : 1;
         groupsFile[nextGroupID.toString()] = {
             name: groupName,
             members: members,
