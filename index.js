@@ -183,8 +183,10 @@ app.post('/api/create_group', function(req, res) {
             return res.json({code: 403, message: 'Incorrect password.'});
         //check if group name is taken
         let groupsFile = JSON.parse(fs.readFileSync('groups/groups.json'));
+
+        let groupsIdList = Object.keys(groupsFile);
         
-        let nextGroupID = Object.values(groupsFile).reduce((a, b) => a.id > b.id ? a : b).id + 1;
+        let nextGroupID = groupsIdList !== [] ?  groupsIdList.reduce((a, b) => a.id > b.id ? a : b).id + 1 : 1;
         groupsFile[nextGroupID.toString()] = {
             name: groupName,
             members: members,
