@@ -26,11 +26,18 @@ app.get('/messaging', function(req, res) {
             res.status(500).json({code: 500, message: 'Error connecting to database.'});
             return console.error(err.message);
         }
-        if (!row) return res.redirect('/signup');
-        if (row.password !== req.query.password) return res.redirect('/signup');
+        if (!row) {
+            return res.redirect('/signup');
+            //return console.error('User does not exist.');
+        }
+        if (row.password !== req.query.password) {
+            return res.redirect('/signup');
+//            return console.error('Incorrect password.');
+        };
+        return res.render('messaging.html', {username: req.query.username, password: req.query.password});
     })
-    db.close();
-    return res.render('messaging.html', {username: req.query.username, password: req.query.password});
+    //db.close();
+    
 })
 
 app.post('/api/message', function(req, res) {
