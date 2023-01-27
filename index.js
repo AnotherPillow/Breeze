@@ -14,6 +14,22 @@ app.get('/', function(req, res) {
 
 app.get('/messaging', function(req, res) {
     if (!req.query.username || !req.query.password) return res.redirect('/signup');
+    //check if user exists
+    let db = new sqlite3.Database('users.sqlite', (err) => {
+        if (err) {
+            res.status(500).json({code: 500, message: 'Error connecting to database.'});
+            return console.error(err.message);
+        }
+    });
+    db.get(`SELECT * FROM users WHERE username = ?`, [req.query.username], (err, row) => {
+        if (err) {
+            res.status(500).json({code: 500, message: 'Error connecting to database.'});
+            return console.error(err.message);
+        }
+        if (!row) return res.redirect('/signup');
+        if (row.password !== req.query.password) return res.redirect('/signup');
+    })
+    db.close();
     return res.render('messaging.html', {username: req.query.username, password: req.query.password});
 })
 
