@@ -195,3 +195,9 @@ input {
 ::-webkit-scrollbar {
     display: none;
 }
+#group_name {
+    position: absolute;
+    top: 5vh;
+    left: 50vw;
+    transform: translateX(-50%);
+}

@@ -6,7 +6,17 @@
         <script>let PAGE_DATA = {
             username: "<%= username%>",
             password: "<%= password%>",
-        }</script>
+        }
+        PAGE_DATA.groups = 
+            eval(`[
+                <% groups.forEach(group => { %>
+                {
+                    id: parseInt("<%= group.id %>"),
+                    name: "<%= group.name %>",
+                },
+            <% }) %>]`)
+        
+        </script>
         <script src="/public/frontend.js"></script>
     </head>
     <body class="josefin">
@@ -16,9 +26,16 @@
                 <h2 id="account_name">Logged in as <%= username%></h2>
                 <img id="account_icon" src="https://api.dicebear.com/5.x/bottts/svg?seed=<%= username %>" alt="avatar" height="100" width="100">
             </div>
+            <div id="group_name">
+                <h2 id="group_name_text">No group selected</h2>
+            </div>
             <div id="group_list">
                 <br>
                 <img src="/public/addgroup.png" alt="add group" id="add_group" class="group-img add-group" width="100" height="100" onclick="document.body.appendChild(makeGroupModal())"/>    
+                
+                <% groups.forEach(group => { %>
+                    <img src="https://api.dicebear.com/5.x/icons/svg?seed=<%= group.encoded %>" alt="<%= group.name %>" class="group-img" width="100" height="100" onclick="currentGroup = parseInt('<%= group.id %>')"/>
+                <% }) %>
             </div>
             <!--Figure out a good way to implement this: <div id="loading_anim"></div>-->
             <div class="messages_container">

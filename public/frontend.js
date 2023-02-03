@@ -46,20 +46,6 @@ if (window.location.pathname === '/messaging') {
     document.addEventListener('DOMContentLoaded', () => {
         let el = document.getElementById('group_list');
         let name = PAGE_DATA.username;
-        fetch(`${document.location.origin}/api/groups?username=${name}`).then(res => res.json()).then(data => {
-            if (data.code === 200) {
-                data.groups.forEach(group => {
-                    console.log(group);
-                    let img = document.createElement('img');
-                    img.src = `https://api.dicebear.com/5.x/icons/svg?seed=${encodeURIComponent(group.name)}`;
-                    img.width = 100;
-                    img.height = 100;
-                    img.classList.add('group-img');
-                    img.setAttribute('onclick', `console.log('${group.id}');currentGroup = ${parseInt(group.id)};`);
-                    el.appendChild(img);
-                })
-            }
-        })
         document.querySelector('#message_input').addEventListener('keydown', e => {
             if (e.key === 'Enter') {
                 sendMessage(e.target.value);
@@ -162,6 +148,9 @@ if (document.location.pathname === '/messaging') {
         return;
         if (currentGroup !== currentTempGroup) {
             currentTempGroup = currentGroup;
+            let newGroupName;
+            PAGE_DATA.groups.map(group => newGroupName = group.id === currentGroup ? group.name : newGroupName);
+            document.querySelector('#group_name_text').innerHTML = newGroupName;
             document.querySelector('.messages_container').innerHTML = '';
         }
         getLatestMessage(currentGroup);

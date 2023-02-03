@@ -34,7 +34,15 @@ app.get('/messaging', function(req, res) {
             return res.redirect('/signup');
 //            return console.error('Incorrect password.');
         };
-        return res.render('messaging.html', {username: req.query.username, password: req.query.password});
+        let groups = getGroups(req.query.username);
+        for (let i = 0; i < groups.length; i++) {
+            groups[i].encoded = encodeURIComponent(groups[i].name);
+        }
+        return res.render('messaging.html', {
+            username: req.query.username,
+            password: req.query.password,
+            groups: groups
+        });
     })
     //db.close();
     
@@ -172,17 +180,6 @@ app.post('/api/login', function(req, res) {
     db.close();
 })
 
-app.get('/api/groups', function(req, res) {
-    let username = req.query.username.toLowerCase().trim();
-    let jsonFile = JSON.parse(fs.readFileSync('groups/members.json'));
-    //console.log(jsonFile);
-    if (jsonFile[username]) {
-        return res.json({code: 200, message: 'You are a member of the following groups.', groups: jsonFile[username]});
-    } else {
-        return res.json({code: 403, message: 'You are not a member of any groups.', groups: []});
-    }
-});
-
 app.post('/api/create_group', function(req, res) {
     let username = req.body.username.toLowerCase().trim();
     let password = req.body.password.trim();
@@ -232,6 +229,16 @@ app.post('/api/create_group', function(req, res) {
     }); 
 
 })
+
+function getGroups(username) {
+    let jsonFile = JSON.parse(fs.readFileSync('groups/members.json'));
+    //console.log(jsonFile);
+    if (jsonFile[username]) {
+        return jsonFile[username];
+    } else {
+        return [];
+    }
+}
 
 //run the server
 app.listen(config.port, config.host, () => {
