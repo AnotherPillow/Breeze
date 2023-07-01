@@ -50,6 +50,7 @@ app.get('/messaging', function(req, res) {
 
 app.post('/api/message', function(req, res) {
     //console.log(req.body);
+    if (!req.body.group_id) return res.status(403);
     let groupID = req.body.group_id.toString();
     let username = req.body.username;
     let password = req.body.password;
